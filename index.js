@@ -83,7 +83,8 @@ app.get('/callback', passport.authenticate('google', { failureRedirect:"/" }), (
 ])
 
 app.get('/info', (req, res) => {
-
+       if(!req.isAuthenticated() || !req.user)
+        return res.redirect("/callback")
 
  res.render('info', {
 db:db,
